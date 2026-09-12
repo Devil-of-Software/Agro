@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AgriAssist – AI Farming Assistant</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🌱 <span>AgriAssist</span></div>
+    <div class="controls">
+      <label for="language">Language</label>
+      <select id="language">
+        <option>English</option>
+        <option>Tamil</option>
+        <option>Hindi</option>
+        <option>Telugu</option>
+        <option>Kannada</option>
+        <option>Malayalam</option>
+        <option>Bengali</option>
+        <option>Marathi</option>
+        <option>Gujarati</option>
+        <option>Punjabi</option>
+        <option>Urdu</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <button class="new-chat" onclick="newChat()">＋ New Chat</button>
+      <h3>Quick Questions</h3>
+      <button class="quick" onclick="askQuick('Which crop is best for this season?')">🌾 Best crop this season</button>
+      <button class="quick" onclick="askQuick('How can I manage common plant diseases?')">🦠 Plant disease help</button>
+      <button class="quick" onclick="askQuick('Give me irrigation advice for my crop.')">💧 Irrigation advice</button>
+      <button class="quick" onclick="askQuick('How should I manage pests in my crop?')">🐛 Pest control</button>
+      <button class="quick" onclick="askQuick('What should I know before sowing?')">📅 Sowing advice</button>
+    </aside>
+
+    <section class="content">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">AI-POWERED FARMING</p>
+          <h1>Your smart farming companion.</h1>
+          <p>Ask about crops, soil, plant diseases, irrigation, weather and farming practices using text or voice.</p>
+        </div>
+      </section>
+
+      <section class="cards">
+        <article class="card">
+          <h2>🌦 Weather</h2>
+          <p>Check current weather for a location.</p>
+          <div class="inline">
+            <input id="city" placeholder="Enter city">
+            <button onclick="loadWeather()">Check</button>
+          </div>
+          <pre id="weatherResult" class="result"></pre>
+        </article>
+
+        <article class="card">
+          <h2>🌱 Crop Recommendation</h2>
+          <p>Get a basic recommendation from soil, season and water conditions.</p>
+          <div class="form-grid">
+            <input id="soil" placeholder="Soil type">
+            <input id="season" placeholder="Season">
+            <input id="water" placeholder="Water availability">
+            <input id="farmLocation" placeholder="Location">
+          </div>
+          <button onclick="recommend()">Recommend Crops</button>
+          <pre id="cropResult" class="result"></pre>
+        </article>
+      </section>
+
+      <section class="chat-card">
+        <div class="chat-head">
+          <div>
+            <h2>🤖 Farming Assistant</h2>
+            <p>Ask your agriculture question.</p>
+          </div>
+          <button class="voice-toggle" onclick="toggleSpeech()">🔊 Voice replies: <span id="speechState">ON</span></button>
+        </div>
+
+        <div id="messages" class="messages">
+          <div class="message ai">
+            <div class="bubble">Hello! 🌱 I’m AgriAssist. Ask me anything about farming, crops, plant diseases, soil or irrigation.</div>
+            <button class="listen" onclick="speakText(this.previousElementSibling.textContent)">🔊 Listen</button>
+          </div>
+        </div>
+
+        <div class="composer">
+          <textarea id="message" rows="2" placeholder="Type your farming question..."></textarea>
+          <button class="mic" id="micBtn" onclick="startVoice()">🎤</button>
+          <button class="send" onclick="sendMessage()">Send ➤</button>
+        </div>
+        <p id="status" class="status"></p>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
